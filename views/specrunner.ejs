@@ -9,35 +9,31 @@
     <script type="text/javascript" src="lib/jasmine-1.2.0.rc3/jasmine.js"></script>
     <script type="text/javascript" src="lib/jasmine-1.2.0.rc3/jasmine-html.js"></script>
 
+    <script type="text/javascript" src="js/config.js"></script>
     <script type='text/javascript'>
-      var dojoConfig = {
-async: true,
-       baseUrl: '/js/',
-       packages: [
-       {name: 'limaSpecs', location: 'limaSpecs'}
-       ]
-      };
+      dojoConfig.deps = [];
+      dojoConfig.packages.push({name: 'limaSpecs', location: 'limaSpecs'});
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.7.2/dojo/dojo.js"></script> 
+
+    <script type="text/javascript">
+
+      require(['dojo/domReady!','limaSpecs/smokeTest'], function(){
+          console.log('Running Tests');
+          var jasmineEnv = jasmine.getEnv();
+          jasmineEnv.updateInterval = 1000;
+
+          var htmlReporter = new jasmine.HtmlReporter();
+
+          jasmineEnv.addReporter(htmlReporter);
+
+          jasmineEnv.specFilter = function(spec) {
+          return htmlReporter.specFilter(spec);
+          };
+
+          jasmineEnv.execute();
+          });
 </script>
-<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.7.2/dojo/dojo.js"></script> 
-
-<script type="text/javascript">
-
-  require(['dojo/domReady!','limaSpecs/smokeTest'], function(){
-      console.log('Running Tests');
-      var jasmineEnv = jasmine.getEnv();
-      jasmineEnv.updateInterval = 1000;
-
-      var htmlReporter = new jasmine.HtmlReporter();
-
-      jasmineEnv.addReporter(htmlReporter);
-
-      jasmineEnv.specFilter = function(spec) {
-      return htmlReporter.specFilter(spec);
-      };
-
-      jasmineEnv.execute();
-  });
-  </script>
 
 </head>
 
