@@ -13,30 +13,33 @@
     <script type='text/javascript'>
       dojoConfig.deps = [];
       dojoConfig.packages.push({name: 'limaSpecs', location: 'limaSpecs'});
-    </script>
-    <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.7.2/dojo/dojo.js"></script> 
+      </script>
+      <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.7.2/dojo/dojo.js"></script> 
 
-    <script type="text/javascript">
+      <script type="text/javascript">
 
-      require(['dojo/domReady!','limaSpecs/smokeTest'], function(){
-          console.log('Running Tests');
-          var jasmineEnv = jasmine.getEnv();
-          jasmineEnv.updateInterval = 1000;
+        require([
+            'dojo/domReady!',
+            'limaSpecs/smokeTest',
+            'limaSpecs/featureManagerSpec'
+            ], function(){
+            var jasmineEnv = jasmine.getEnv();
+            jasmineEnv.updateInterval = 1000;
 
-          var htmlReporter = new jasmine.HtmlReporter();
+            var htmlReporter = new jasmine.HtmlReporter();
 
-          jasmineEnv.addReporter(htmlReporter);
+            jasmineEnv.addReporter(htmlReporter);
 
-          jasmineEnv.specFilter = function(spec) {
-          return htmlReporter.specFilter(spec);
-          };
+            jasmineEnv.specFilter = function(spec) {
+            return htmlReporter.specFilter(spec);
+            };
 
-          jasmineEnv.execute();
-          });
-</script>
+            jasmineEnv.execute();
+            });
+          </script>
 
-</head>
+        </head>
 
-<body>
-</body>
-</html>
+        <body>
+        </body>
+      </html>
