@@ -1,10 +1,10 @@
 
 /**
  * Module dependencies.
- */
+*/
 
 var express = require('express')
-  , routes = require('./routes')
+, routes = require('./routes')
 
 var app = module.exports = express.createServer();
 
@@ -31,6 +31,10 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
+
+app.get('/specs', function(req, res){
+  res.render('specrunner'); 
+});
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
