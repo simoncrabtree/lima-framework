@@ -1,3 +1,4 @@
-define(['dojo/domReady!'], function(){
-  console.log('Example App Ready');
+"use strict";
+define(['dojo/domReady!'], function () {
+	console.log('Example App Ready');
 });
