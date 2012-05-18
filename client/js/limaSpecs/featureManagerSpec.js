@@ -1,18 +1,37 @@
 define(['lima/featureManager', 'dojo/topic', 'limaSpecs/testFeature'],
        function(featureManager, topic, testFeature){
-  describe('The Feature Manager', function(){
+         describe('The Feature Manager', function(){
 
-    describe('When the InvokeFeature topic is published', function(){
+           describe('when InvokeFeature is published', function(){
+             beforeEach(function(){
+               var features = [
+                 {key:'show_test_view_one',
+                   type:'View',
+                   path:'limaSpecs/fixtures/testViewOne/Controller'}
+               ];
 
-      beforeEach(function(){
-        spyOn(testFeature, 'invoke');
-        topic.publish('InvokeFeature', 'limaSpecs/testFeature');
-      });
+               featureManager.setAvailableFeatures(features);
+             });
 
-      it('Loads and Invokes the correct feature', function(){
-        expect(testFeature.invoke).toHaveBeenCalled();
-      });
-    });
-  });
 
-});
+             it('invokes the correct feature', function(){
+               var invokedFeature;
+               var onInvoked = function(feature){
+                 invokedFeature = feature;
+               };
+
+               topic.publish('InvokeFeature', 'show_test_view_one', {
+                 onInvoked: onInvoked
+               });
+
+               waitsFor(function(){
+                 return invokedFeature;
+               }, 1000);
+
+               runs(function(){
+                 expect(invokedFeature.specificProperty).toBe('Controller For View One');
+               });
+             });
+           });
+         });
+       });
