@@ -6,5 +6,6 @@ define([
 function(topic){
   console.log('Example App Ready');
 
-  topic.publish('InvokeFeature', 'example/views/viewOne/controller');
+  topic.publish('InvokeFeature', 'example/views/viewOne/Controller');
+
 });
