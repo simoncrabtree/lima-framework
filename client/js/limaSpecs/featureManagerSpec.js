@@ -1,37 +1,27 @@
-define(['lima/featureManager', 'dojo/topic', 'limaSpecs/testFeature'],
-       function(featureManager, topic, testFeature){
-         describe('The Feature Manager', function(){
+define(['lima/featureManager',
+       'lima/viewManager',
+       'dojo/topic',
+       'limaSpecs/fixtures/testViewOne/View',
+       'limaSpecs/fixtures/features/show_view_one'
+],
+function(featureManager, viewManager, topic, testFeature, TestViewOne){
+  describe('The Feature Manager', function(){
 
-           describe('when InvokeFeature is published', function(){
-             beforeEach(function(){
-               var features = [
-                 {key:'show_test_view_one',
-                   type:'View',
-                   path:'limaSpecs/fixtures/testViewOne/Controller'}
-               ];
+    describe('when InvokeFeature is published for a "View"', function(){
+      beforeEach(function(){
+        spyOn(viewManager, 'showView');
+        var features = [
+          'show_view_one'
+        ];
 
-               featureManager.setAvailableFeatures(features);
-             });
+        featureManager.setFeatureRootDirectory('limaSpecs/fixtures/features');
+        featureManager.setAvailableFeatures(features);
+        topic.publish('InvokeFeature', 'show_view_one');
+      });
 
-
-             it('invokes the correct feature', function(){
-               var invokedFeature;
-               var onInvoked = function(feature){
-                 invokedFeature = feature;
-               };
-
-               topic.publish('InvokeFeature', 'show_test_view_one', {
-                 onInvoked: onInvoked
-               });
-
-               waitsFor(function(){
-                 return invokedFeature;
-               }, 1000);
-
-               runs(function(){
-                 expect(invokedFeature.specificProperty).toBe('Controller For View One');
-               });
-             });
-           });
-         });
-       });
+      it("Passes the View to the viewManager's showView method" , function(){
+        expect(viewManager.showView).toHaveBeenCalledWith('limaSpecs/fixtures/testViewOne/View');
+      });
+    });
+  });
+});
