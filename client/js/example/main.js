@@ -1,11 +1,11 @@
 define([
        'dojo/topic',
+       'lima/viewManager',
        'lima/featureManager',
        'dojo/domReady!'
 ],
-function(topic){
+function(topic, viewManager){
   console.log('Example App Ready');
 
-  topic.publish('InvokeFeature', 'example/views/viewOne/Controller');
-
+  viewManager.showView('example/views/viewOne/View');
 });
