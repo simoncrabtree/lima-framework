@@ -1,11 +1,13 @@
 define([
        'dojo/topic',
-       'lima/viewManager',
        'lima/featureManager',
        'dojo/domReady!'
 ],
-function(topic, viewManager){
+function(topic, featureManager){
   console.log('Example App Ready');
 
-  viewManager.showView('example/views/viewOne/View');
+  featureManager.setFeatureRootDirectory('example/features');
+  featureManager.setAvailableFeatures(['show_hello_world']);
+
+  topic.publish('InvokeFeature', 'show_hello_world');
 });

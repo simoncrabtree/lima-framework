@@ -19,7 +19,9 @@ define(['dojo/topic',
         if(matchingFeature){
           require([featureRootDirectory + '/' + featureToInvoke], function(feature){
             if(feature.view){
-              viewManager.showView(feature.view);
+              viewManager.createView(feature.view, function(view){
+                view.invoke();
+              });
             }
           });
         } else {

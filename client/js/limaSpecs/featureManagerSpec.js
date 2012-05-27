@@ -9,7 +9,7 @@ function(featureManager, viewManager, topic, testFeature, TestViewOne){
 
     describe('when InvokeFeature is published for a "View"', function(){
       beforeEach(function(){
-        spyOn(viewManager, 'showView');
+        spyOn(viewManager, 'createView');
         var features = [
           'show_view_one'
         ];
@@ -20,7 +20,7 @@ function(featureManager, viewManager, topic, testFeature, TestViewOne){
       });
 
       it("Passes the View to the viewManager's showView method" , function(){
-        expect(viewManager.showView).toHaveBeenCalledWith('limaSpecs/fixtures/testViewOne/View');
+        expect(viewManager.createView).toHaveBeenCalled();
       });
     });
   });

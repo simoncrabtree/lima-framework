@@ -4,15 +4,17 @@ define(['dojo/_base/declare',
 function(declare, _ViewBase){
 
   return {
-    showView: function (viewPath, onViewShownCallback) {
+    createView: function (viewPath, onViewShownCallback) {
+      var self = this;
       var templatePath = viewPath + '.html';
       var viewPanel = this.viewPanel || 'viewPanel';
       require([viewPath, 'dojo/text!' + templatePath], function(viewObject, template){
         var viewClass = declare([_ViewBase], viewObject);
-        var viewInstance = new viewClass({
+        self.currentView = new viewClass({
           templateString: template
         });
-        viewInstance.placeAt(viewPanel);
+        
+        self.currentView.invoke();
         if(onViewShownCallback){
           onViewShownCallback(viewInstance);
         }
