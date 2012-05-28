@@ -44,5 +44,12 @@ app.get('/query/version', function(req, res){
   res.json({version: 'V1.0.0'});
 });
 
+app.get('/query/vehiclejourneys', function(req, res) {
+  res.json([
+           {registration: 'A123 CDE', distance: 102.34},
+           {registration: 'B456 FGH', distance: 210.34}
+  ]);
+});
+
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

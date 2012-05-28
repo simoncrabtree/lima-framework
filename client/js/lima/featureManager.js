@@ -20,7 +20,11 @@ define(['dojo/topic',
           require([featureRootDirectory + '/' + featureToInvoke], function(feature){
             if(feature.view){
               viewManager.createView(feature.view, function(view){
-                view.invoke();
+                if(view.invoke){
+                  view.invoke();
+                } else {
+                  throw new 'View ' + feature.view + ' needs an invoke method!';
+                }
               });
             }
           });

@@ -14,9 +14,8 @@ function(declare, _ViewBase){
           templateString: template
         });
         
-        self.currentView.invoke();
         if(onViewShownCallback){
-          onViewShownCallback(viewInstance);
+          onViewShownCallback(self.currentView);
         }
       });
     }

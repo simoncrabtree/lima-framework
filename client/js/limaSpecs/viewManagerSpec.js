@@ -1,12 +1,13 @@
 define(['lima/viewManager',
+       'dojo/dom-construct',
        'limaSpecs/fixtures/testViewOne/View',
        'dojo/text!limaSpecs/fixtures/testViewOne/View.html'
-], function(viewManager){
+], function(viewManager, domConstruct){
   describe('View Manager', function(){
     describe('When createView is called with a view class name', function(){
 
       beforeEach(function(){
-        viewManager.viewPanel = dojo.create('div');
+        viewManager.viewPanel = domConstruct.create('div');
         viewManager.createView('limaSpecs/fixtures/testViewOne/View');
       });
 
