@@ -46,8 +46,8 @@ app.get('/query/version', function(req, res){
 
 app.get('/query/vehiclejourneys', function(req, res) {
   res.json([
-           {registration: 'A123 CDE', distance: 102.34},
-           {registration: 'B456 FGH', distance: 210.34}
+           {id: 1, registration: 'A123 CDE', distance: 102.34},
+           {id: 2, registration: 'B456 FGH', distance: 210.34}
   ]);
 });
 

@@ -7,6 +7,7 @@ define(function () {
     viewDataReceived: function (data) {
       this.setClass('hasVehicleJourneys', data.length > 0);
       this.setClass('onlyOneVehicle', data.length === 1);
+      this.journeyList.renderData(data);
       this.show();
     },
 

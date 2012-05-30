@@ -4,3 +4,12 @@
 [submodule "client/js/dijit"]
 	path = client/js/dijit
 	url = https://github.com/dojo/dijit.git
+[submodule "client/js/dgrid"]
+	path = client/js/dgrid
+	url = https://github.com/SitePen/dgrid.git
+[submodule "client/js/xstyle"]
+	path = client/js/xstyle
+	url = https://github.com/kriszyp/xstyle.git
+[submodule "client/js/put-selector"]
+	path = client/js/put-selector
+	url = https://github.com/kriszyp/put-selector.git
